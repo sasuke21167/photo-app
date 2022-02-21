@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-NotFound.propTypes = {
+Photo.propTypes = {
   
 };
 
-function NotFound(props) {
+function Photo(props) {
   return (
     <div>
-      
+      photo
     </div>
   );
 }
 
-export default NotFound;
+export default Photo;
