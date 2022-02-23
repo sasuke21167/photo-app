@@ -1,9 +1,8 @@
-import { ErrorMessage } from 'formik';
-import PropTypes from 'prop-types';
-import React from 'react';
-import { Form } from 'react-bootstrap';
-import Select from 'react-select';
-
+import { ErrorMessage } from "formik";
+import PropTypes from "prop-types";
+import React from "react";
+import { Form } from "react-bootstrap";
+import Select from "react-select";
 
 SelectField.propTypes = {
   field: PropTypes.object.isRequired,
@@ -16,11 +15,11 @@ SelectField.propTypes = {
 };
 
 SelectField.defaultProps = {
-  label: '',
-  placeholder: '',
+  label: "",
+  placeholder: "",
   disabled: false,
   options: [],
-}
+};
 
 function SelectField(props) {
   const { field, form, options, label, placeholder, disabled } = props;
@@ -28,19 +27,21 @@ function SelectField(props) {
   const { errors, touched } = form;
   const showError = errors[name] && touched[name];
 
-  const selectedOption = options.find(option => option.value === value);
+  const selectedOption = options.find((option) => option.value === value);
 
   const handleSelectedOptionChange = (selectedOption) => {
-    const selectedValue = selectedOption ? selectedOption.value : selectedOption;
+    const selectedValue = selectedOption
+      ? selectedOption.value
+      : selectedOption;
 
     const changeEvent = {
       target: {
         name: name,
-        value: selectedValue
-      }
+        value: selectedValue,
+      },
     };
     field.onChange(changeEvent);
-  }
+  };
 
   return (
     <Form.Group>
@@ -51,15 +52,17 @@ function SelectField(props) {
         {...field}
         value={selectedOption}
         onChange={handleSelectedOptionChange}
-
         placeholder={placeholder}
         isDisabled={disabled}
         options={options}
-
-        className={showError ? 'is-invalid' : ''}
+        className={showError ? "is-invalid" : ""}
       />
 
-      <ErrorMessage name={name} component={Form.Control.Feedback} />
+      <ErrorMessage name={name}>
+        {(msg) => (
+          <Form.Control.Feedback type="invalid">{msg}</Form.Control.Feedback>
+        )}
+      </ErrorMessage>
     </Form.Group>
   );
 }

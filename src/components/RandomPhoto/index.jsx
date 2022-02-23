@@ -38,7 +38,7 @@ function RandomPhoto(props) {
         <Button
           outline="true"
           name={name}
-          color="bs-primary"
+          variant="outline-primary"
           onBlur={onRandomButtonBlur}
           onClick={handleRandomPhotoClick}
         >

@@ -1,9 +1,8 @@
-import RandomPhoto from 'components/RandomPhoto';
-import { ErrorMessage } from 'formik';
-import PropTypes from 'prop-types';
-import React from 'react';
-import { Form } from 'react-bootstrap';
-
+import RandomPhoto from "components/RandomPhoto";
+import { ErrorMessage } from "formik";
+import PropTypes from "prop-types";
+import React from "react";
+import { Form } from "react-bootstrap";
 
 RandomPhotoField.propTypes = {
   field: PropTypes.object.isRequired,
@@ -13,8 +12,8 @@ RandomPhotoField.propTypes = {
 };
 
 RandomPhotoField.defaultProps = {
-  label: '',
-}
+  label: "",
+};
 
 function RandomPhotoField(props) {
   const { field, form, label } = props;
@@ -23,8 +22,8 @@ function RandomPhotoField(props) {
   const showError = errors[name] && touched[name];
 
   const handleImageUrlChange = (newImageUrl) => {
-    form.setFieldValue(name, newImageUrl)
-  }
+    form.setFieldValue(name, newImageUrl);
+  };
 
   return (
     <Form.Group>
@@ -37,8 +36,12 @@ function RandomPhotoField(props) {
         onRandomButtonBlur={onBlur}
       />
 
-      <div className={showError ? 'is-invalid' : ''}></div>
-      <ErrorMessage name={name} component={Form.Control.Feedback} />
+      <div className={showError ? "is-invalid" : ""}></div>
+      <ErrorMessage name={name}>
+        {(msg) => (
+          <Form.Control.Feedback type="invalid">{msg}</Form.Control.Feedback>
+        )}
+      </ErrorMessage>
     </Form.Group>
   );
 }
