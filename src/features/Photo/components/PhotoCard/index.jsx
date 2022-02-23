@@ -35,21 +35,15 @@ function PhotoCard(props) {
 
         <div className="photo__actions">
           <div>
-            <Button
-              outline="true"
-              size="sm"
-              color="light"
-              onClick={handleEditClick}
-            >
+            <Button variant="outline-light" size="sm" onClick={handleEditClick}>
               Edit
             </Button>
           </div>
 
           <div>
             <Button
-              outline="true"
+              variant="outline-danger"
               size="sm"
-              color="danger"
               onClick={handleRemoveClick}
             >
               Remove
