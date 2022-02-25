@@ -1,12 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Container, Row, Col } from 'react-bootstrap';
-import {NavLink} from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import { Container, Row, Col } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import "./Header.scss";
 
-Header.propTypes = {
-  
-};
+Header.propTypes = {};
 
 function Header(props) {
   return (
@@ -14,7 +12,7 @@ function Header(props) {
       <Container>
         <Row className="justify-content-between">
           <Col xs="auto">
-            <a 
+            <a
               className="header__link header__title"
               href="#"
               target="_blank"
@@ -25,11 +23,15 @@ function Header(props) {
           </Col>
           <Col xs="auto">
             <NavLink
-              className={(navData) => navData.isActive ? "header__link header__link--active" : "header__link" }
+              className={(navData) =>
+                navData.isActive
+                  ? "header__link header__link--active"
+                  : "header__link"
+              }
               end
-              to="/photos"
+              to="/sign-in"
             >
-              Redux Project
+              Sign In
             </NavLink>
           </Col>
         </Row>

@@ -1,7 +1,15 @@
 import React from "react";
-import PropTypes from "prop-types";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
 SingIn.propTypes = {};
+
+const uiConfig = {
+  signInFlow: "redirect",
+  signInSuccessUrl: "/photos",
+  signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
+};
 
 function SingIn(props) {
   return (
@@ -11,6 +19,8 @@ function SingIn(props) {
 
         <p>or login with social accounts</p>
       </div>
+
+      <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
     </div>
   );
 }
