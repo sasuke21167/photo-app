@@ -47,7 +47,7 @@ function AddEditPage(props) {
           dispatch(action);
         }
 
-        navigate("/");
+        navigate("/photo-app");
         resolve(true);
       }, 2000);
     });

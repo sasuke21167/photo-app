@@ -12,7 +12,11 @@ function Header(props) {
       <Container>
         <Row className="justify-content-between">
           <Col xs="auto">
-            <NavLink className="header__link header__title" href="#" to="/">
+            <NavLink
+              className="header__link header__title"
+              href="#"
+              to="/photo-app"
+            >
               Photo App
             </NavLink>
           </Col>
@@ -24,7 +28,7 @@ function Header(props) {
                   : "header__link"
               }
               end
-              to="/sign-in"
+              to="/photo-app/sign-in"
             >
               Sign In
             </NavLink>

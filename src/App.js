@@ -94,10 +94,13 @@ function App() {
         <Button onClick={handleButtonClick}>Fetch Product List</Button>
 
         <Routes>
-          <Route path="/" element={<Navigate replace to="/photo-app" />} />
-          <Route path="/photo-app/*" element={<Photo />} />
-          <Route path="/sign-in" element={<SingIn />} />
-          <Route path="*" element={<NotFound />} />
+          <Route
+            path="/photo-app"
+            element={<Navigate replace to="/photo-app/photos" />}
+          />
+          <Route path="/photo-app/photos/*" element={<Photo />} />
+          <Route path="/photo-app/sign-in" element={<SingIn />} />
+          <Route path="/photo-app/*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </div>

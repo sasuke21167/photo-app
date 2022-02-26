@@ -6,7 +6,7 @@ import "firebase/compat/auth";
 SignIn.propTypes = {};
 
 const uiConfig = {
-  signInFlow: "redirect",
+  signInFlow: "popup",
   signInSuccessUrl: "/photo-app",
   signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
 };
