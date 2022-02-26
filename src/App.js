@@ -16,8 +16,8 @@ const Photo = React.lazy(() => import("./features/Photo"));
 
 // Configure Firebase.
 const config = {
-  apiKey: process.env.REACT_APP_FIREBASE_API,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  apiKey: "AIzaSyBQkxaHaxZB_TvlTb0-9PCx81jIjtUOhPg",
+  authDomain: "photo-app-4b058.firebaseapp.com",
 };
 firebase.initializeApp(config);
 
@@ -94,8 +94,8 @@ function App() {
         <Button onClick={handleButtonClick}>Fetch Product List</Button>
 
         <Routes>
-          <Route path="/" element={<Navigate replace to="/photos" />} />
-          <Route path="/photos/*" element={<Photo />} />
+          <Route path="/" element={<Navigate replace to="/photo-app" />} />
+          <Route path="/photo-app/*" element={<Photo />} />
           <Route path="/sign-in" element={<SingIn />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

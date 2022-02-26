@@ -47,7 +47,7 @@ function AddEditPage(props) {
           dispatch(action);
         }
 
-        navigate("/photos");
+        navigate("/");
         resolve(true);
       }, 2000);
     });
