@@ -16,8 +16,8 @@ const Photo = React.lazy(() => import("./features/Photo"));
 
 // Configure Firebase.
 const config = {
-  apiKey: "AIzaSyBQkxaHaxZB_TvlTb0-9PCx81jIjtUOhPg",
-  authDomain: "photo-app-4b058.firebaseapp.com",
+  apiKey: process.env.REACT_APP_FIREBASE_API,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
 };
 firebase.initializeApp(config);
 

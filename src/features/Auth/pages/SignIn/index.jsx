@@ -7,7 +7,7 @@ SignIn.propTypes = {};
 
 const uiConfig = {
   signInFlow: "redirect",
-  signInSuccessUrl: "/",
+  signInSuccessUrl: "/photo-app",
   signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
 };
 
