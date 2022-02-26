@@ -59,6 +59,10 @@ function App() {
         try {
           const actionResult = await dispatch(getMe());
           const currentUser = unwrapResult(actionResult);
+          localStorage.setItem(
+            "firebaseui::rememberedAccounts",
+            JSON.stringify(currentUser)
+          );
           console.log("Logged in user: ", currentUser);
         } catch (error) {
           console.log("Failed to login ", error.message);

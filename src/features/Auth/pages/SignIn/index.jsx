@@ -3,7 +3,7 @@ import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 
-SingIn.propTypes = {};
+SignIn.propTypes = {};
 
 const uiConfig = {
   signInFlow: "redirect",
@@ -11,7 +11,7 @@ const uiConfig = {
   signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
 };
 
-function SingIn(props) {
+function SignIn() {
   return (
     <div>
       <div className="text-center">
@@ -25,4 +25,4 @@ function SingIn(props) {
   );
 }
 
-export default SingIn;
+export default SignIn;

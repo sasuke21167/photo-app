@@ -12,14 +12,9 @@ function Header(props) {
       <Container>
         <Row className="justify-content-between">
           <Col xs="auto">
-            <a
-              className="header__link header__title"
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <NavLink className="header__link header__title" href="#" to="/">
               Photo App
-            </a>
+            </NavLink>
           </Col>
           <Col xs="auto">
             <NavLink

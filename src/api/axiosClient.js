@@ -1,6 +1,7 @@
 import axios from "axios";
 import queryString from "query-string";
 import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
 const getFirebaseToken = async () => {
   const currentUser = firebase.auth().currentUser;
@@ -10,6 +11,7 @@ const getFirebaseToken = async () => {
   const hasRememberedAccount = localStorage.getItem(
     "firebaseui::rememberedAccounts"
   );
+  console.log(hasRememberedAccount);
   if (!hasRememberedAccount) return null;
 
   // Logged in but current user is not fetched --> wait (10s)
