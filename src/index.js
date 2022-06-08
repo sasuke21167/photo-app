@@ -8,6 +8,8 @@ import App from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
+import setupInterceptors from "./api/setupInterceptors";
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -18,6 +20,8 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
+
+setupInterceptors(store);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

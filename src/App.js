@@ -1,106 +1,113 @@
-import { unwrapResult } from "@reduxjs/toolkit";
-import productApi from "api/productApi";
-import { getMe } from "app/userSlice";
-import SingIn from "features/Auth/pages/SignIn";
-import firebase from "firebase/compat/app";
-import React, { Suspense, useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
-import { useDispatch } from "react-redux";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { logout } from "app/authSlice";
+import Register from "components/Register";
+import Admin from "features/Admin";
+import Login from "features/Auth/pages/Login";
+import React, { Suspense, useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Navigate, Route, Routes } from "react-router-dom";
 import "./App.scss";
+import EventBus from "./common/EventBus";
 import Header from "./components/Header";
 import NotFound from "./components/NotFound";
 
 // Lazy load - Code splitting
 const Photo = React.lazy(() => import("./features/Photo"));
 
-// Configure Firebase.
-const config = {
-  apiKey: process.env.REACT_APP_FIREBASE_API,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-};
-firebase.initializeApp(config);
-
 function App() {
-  const [productList, setProductList] = useState([]);
+  const [showAdminBoard, setShowAdminBoard] = useState(false);
+
+  const { user: currentUser } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
+  const logOut = useCallback(() => {
+    dispatch(logout());
+  }, [dispatch]);
+
   useEffect(() => {
-    const fetchProductList = async () => {
-      try {
-        const params = {
-          _page: 1,
-          _limit: 10,
-        };
-        const response = await productApi.getAll(params);
-        console.log(response);
-        setProductList(response.data);
-      } catch (error) {
-        console.log("Fauled to fetch product list", error);
-      }
-    };
-
-    fetchProductList();
-  }, []);
-
-  // Handle firebase auth changed
-  useEffect(() => {
-    const unregisterAuthObserver = firebase
-      .auth()
-      .onAuthStateChanged(async (user) => {
-        if (!user) {
-          // user logs out, handle something here
-          console.log("User is not logged in");
-          return;
-        }
-
-        // Get me when signed in
-        // const action = getMe();
-        try {
-          const actionResult = await dispatch(getMe());
-          const currentUser = unwrapResult(actionResult);
-          localStorage.setItem(
-            "firebaseui::rememberedAccounts",
-            JSON.stringify(currentUser)
-          );
-          console.log("Logged in user: ", currentUser);
-        } catch (error) {
-          console.log("Failed to login ", error.message);
-          // show toast error
-        }
-      });
-
-    return () => unregisterAuthObserver();
-  }, []);
-
-  const handleButtonClick = async () => {
-    try {
-      const params = {
-        _page: 1,
-        _limit: 10,
-      };
-      const response = await productApi.getAll(params);
-      console.log(response);
-    } catch (error) {
-      console.log("Failed to fetch product list: ", error);
+    if (currentUser) {
+      setShowAdminBoard(currentUser.roles.includes("ROLE_ADMIN"));
+    } else {
+      setShowAdminBoard(false);
     }
-  };
+
+    EventBus.on("logout", () => {
+      logOut();
+    });
+
+    return () => {
+      EventBus.remove("logout");
+    };
+  }, [currentUser, logOut]);
 
   return (
     <div className="photo-app">
       <Suspense fallback={<div>Loading ...</div>}>
         <Header />
 
-        <Button onClick={handleButtonClick}>Fetch Product List</Button>
+        <nav className="navbar navbar-expand navbar-dark bg-dark">
+          <Link to={"/"} className="navbar-brand">
+            bezKoder
+          </Link>
+          <div className="navbar-nav mr-auto">
+            <li className="nav-item">
+              <Link to={"/home"} className="nav-link">
+                Home
+              </Link>
+            </li>
+
+            {showAdminBoard && (
+              <li className="nav-item">
+                <Link to={"/admin"} className="nav-link">
+                  Admin Board
+                </Link>
+              </li>
+            )}
+
+            {currentUser && (
+              <li className="nav-item">
+                <Link to={"/user"} className="nav-link">
+                  User
+                </Link>
+              </li>
+            )}
+          </div>
+          {currentUser ? (
+            <div className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <Link to={"/profile"} className="nav-link">
+                  {currentUser.username}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <a href="/" className="nav-link" onClick={logOut}>
+                  LogOut
+                </a>
+              </li>
+            </div>
+          ) : (
+            <div className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <Link to={"/login"} className="nav-link">
+                  Login
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link to={"/register"} className="nav-link">
+                  Sign Up
+                </Link>
+              </li>
+            </div>
+          )}
+        </nav>
 
         <Routes>
-          <Route
-            path="/photo-app"
-            element={<Navigate replace to="/photo-app/photos" />}
-          />
-          <Route path="/photo-app/photos/*" element={<Photo />} />
-          <Route path="/photo-app/sign-in" element={<SingIn />} />
-          <Route path="/photo-app/*" element={<NotFound />} />
+          <Route path="/" element={<Navigate replace to="/photos" />} />
+          <Route path="/photos/*" element={<Photo />} />
+          <Route path="/sign-in" element={<Login />} />
+          <Route path="/*" element={<NotFound />} />
+          <Route path="/admin/*" element={<Admin />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </Suspense>
     </div>

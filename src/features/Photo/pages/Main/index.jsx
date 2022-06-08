@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Container } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import Images from "constants/images";
 import { useDispatch, useSelector } from "react-redux";
 import PhotoList from "features/Photo/components/PhotoList";
 import { removePhoto } from "features/Photo/photoSlice";
+import allApi from "api/allApi";
 
 MainPage.propTypes = {};
 
@@ -14,7 +15,26 @@ function MainPage(props) {
   const dispatch = useDispatch();
   const photos = useSelector((state) => state.photos);
   const navigate = useNavigate();
+  const [productList, setProductList] = useState([]);
   console.log("List photos:", photos);
+
+  useEffect(() => {
+    const fetchProductList = async () => {
+      try {
+        const params = {
+          page: 0,
+          size: 12,
+        };
+        const response = await allApi.getAllPhoto(params);
+        console.log(response.data);
+        setProductList(response.data.photos);
+      } catch (error) {
+        console.log("Failed to fetch product list", error);
+      }
+    };
+
+    fetchProductList();
+  }, []);
 
   const handlePhotoEditClick = (photo) => {
     console.log("Edit: ", photo);
@@ -37,11 +57,11 @@ function MainPage(props) {
       ></Banner>
       <Container className="text-center">
         <div className="py-5">
-          <Link to="add">Add new photo</Link>
+          <Link to={"/admin/add"}>Add new photo</Link>
         </div>
 
         <PhotoList
-          photoList={photos}
+          photoList={productList}
           onPhotoEditClick={handlePhotoEditClick}
           onPhotoRemoveClick={handlePhotoRemoveClick}
         />

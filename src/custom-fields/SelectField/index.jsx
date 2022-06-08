@@ -27,7 +27,13 @@ function SelectField(props) {
   const { errors, touched } = form;
   const showError = errors[name] && touched[name];
 
-  const selectedOption = options.find((option) => option.value === value);
+  const newOptions = options.map((option) => {
+    return {
+      value: option._id,
+      label: option.name,
+    };
+  });
+  const selectedOption = newOptions.find((option) => option.value === value);
 
   const handleSelectedOptionChange = (selectedOption) => {
     const selectedValue = selectedOption
@@ -54,7 +60,7 @@ function SelectField(props) {
         onChange={handleSelectedOptionChange}
         placeholder={placeholder}
         isDisabled={disabled}
-        options={options}
+        options={newOptions}
         className={showError ? "is-invalid" : ""}
       />
 

@@ -6,17 +6,14 @@ import "./Header.scss";
 
 Header.propTypes = {};
 
+//rsfp
 function Header(props) {
   return (
     <header className="header">
       <Container>
         <Row className="justify-content-between">
           <Col xs="auto">
-            <NavLink
-              className="header__link header__title"
-              href="#"
-              to="/photo-app"
-            >
+            <NavLink className="header__link header__title" href="#" to="/">
               Photo App
             </NavLink>
           </Col>
@@ -28,7 +25,7 @@ function Header(props) {
                   : "header__link"
               }
               end
-              to="/photo-app/sign-in"
+              to="/sign-in"
             >
               Sign In
             </NavLink>

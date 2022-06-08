@@ -1,4 +1,3 @@
-import { PHOTO_CATEGORY_OPTIONS } from "constants/global";
 import InputField from "custom-fields/InputField";
 import RandomPhotoField from "custom-fields/RandomPhotoField";
 import SelectField from "custom-fields/SelectField";
@@ -17,18 +16,20 @@ PhotoForm.defaultPros = {
 };
 
 function PhotoForm(props) {
-  const { initialValues, isAddMode } = props;
+  const { initialValues, isAddMode, category } = props;
 
   const validationSchema = Yup.object().shape({
     title: Yup.string().required("This field is required."),
 
-    categoryId: Yup.number().required("This field is required.").nullable(),
+    category: Yup.string().required("This field is required.").nullable(),
 
-    photo: Yup.string().when("categoryId", {
-      is: 1,
-      then: Yup.string().required("This field is required."),
-      otherwise: Yup.string().notRequired(),
-    }),
+    photoUrl: Yup.string()
+      .required("This field is required.")
+      .when("categoryId", {
+        is: 1,
+        then: Yup.string().required("This field is required."),
+        otherwise: Yup.string().notRequired(),
+      }),
   });
 
   return (
@@ -40,8 +41,6 @@ function PhotoForm(props) {
       {(formikProps) => {
         //do something here...
         const { values, errors, touched, isSubmitting } = formikProps;
-        console.log({ values, errors, touched });
-
         return (
           <Form1>
             <FastField
@@ -51,14 +50,14 @@ function PhotoForm(props) {
               placeholder="Eg:..."
             ></FastField>
             <FastField
-              name="categoryId"
+              name="category"
               component={SelectField}
               label="Category"
               placeholder="What's your photo category?"
-              options={PHOTO_CATEGORY_OPTIONS}
+              options={category}
             />
             <FastField
-              name="photo"
+              name="photoUrl"
               component={RandomPhotoField}
               label="Photo"
             />
