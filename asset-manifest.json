@@ -1,25 +1,23 @@
 {
   "files": {
-    "main.css": "/photo-app/static/css/main.2cba651e.css",
-    "main.js": "/photo-app/static/js/main.367b9c80.js",
-    "static/css/151.23af6630.chunk.css": "/photo-app/static/css/151.23af6630.chunk.css",
-    "static/js/151.aaa069ae.chunk.js": "/photo-app/static/js/151.aaa069ae.chunk.js",
-    "static/js/787.bb555355.chunk.js": "/photo-app/static/js/787.bb555355.chunk.js",
-    "static/js/716.4dca2aaf.chunk.js": "/photo-app/static/js/716.4dca2aaf.chunk.js",
-    "static/media/orange-bg.jpg": "/photo-app/static/media/orange-bg.a98c2734b4299e305b7f.jpg",
-    "static/media/pink-bg.jpg": "/photo-app/static/media/pink-bg.d6dafc0aa74a3594ed43.jpg",
-    "static/media/colorful-bg.jpg": "/photo-app/static/media/colorful-bg.95c0fb342777f6d1bc88.jpg",
-    "static/media/blue-bg.jpg": "/photo-app/static/media/blue-bg.93b683dcd7c104e108ed.jpg",
-    "index.html": "/photo-app/index.html",
-    "main.2cba651e.css.map": "/photo-app/static/css/main.2cba651e.css.map",
-    "main.367b9c80.js.map": "/photo-app/static/js/main.367b9c80.js.map",
-    "151.23af6630.chunk.css.map": "/photo-app/static/css/151.23af6630.chunk.css.map",
-    "151.aaa069ae.chunk.js.map": "/photo-app/static/js/151.aaa069ae.chunk.js.map",
-    "787.bb555355.chunk.js.map": "/photo-app/static/js/787.bb555355.chunk.js.map",
-    "716.4dca2aaf.chunk.js.map": "/photo-app/static/js/716.4dca2aaf.chunk.js.map"
+    "main.css": "/static/css/main.c59a2119.css",
+    "main.js": "/static/js/main.40ec807f.js",
+    "static/css/104.4ef68622.chunk.css": "/static/css/104.4ef68622.chunk.css",
+    "static/js/104.3dc29a59.chunk.js": "/static/js/104.3dc29a59.chunk.js",
+    "static/js/787.bb555355.chunk.js": "/static/js/787.bb555355.chunk.js",
+    "static/media/orange-bg.jpg": "/static/media/orange-bg.a98c2734b4299e305b7f.jpg",
+    "static/media/pink-bg.jpg": "/static/media/pink-bg.d6dafc0aa74a3594ed43.jpg",
+    "static/media/colorful-bg.jpg": "/static/media/colorful-bg.95c0fb342777f6d1bc88.jpg",
+    "static/media/blue-bg.jpg": "/static/media/blue-bg.93b683dcd7c104e108ed.jpg",
+    "index.html": "/index.html",
+    "main.c59a2119.css.map": "/static/css/main.c59a2119.css.map",
+    "main.40ec807f.js.map": "/static/js/main.40ec807f.js.map",
+    "104.4ef68622.chunk.css.map": "/static/css/104.4ef68622.chunk.css.map",
+    "104.3dc29a59.chunk.js.map": "/static/js/104.3dc29a59.chunk.js.map",
+    "787.bb555355.chunk.js.map": "/static/js/787.bb555355.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2cba651e.css",
-    "static/js/main.367b9c80.js"
+    "static/css/main.c59a2119.css",
+    "static/js/main.40ec807f.js"
   ]
 }
